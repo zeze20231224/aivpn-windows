@@ -1,0 +1,3 @@
+# Preserve the exact upstream rule bytes enforced by BuildPins.cs.
+assets/cn-domains.list -text
+assets/cn-ip.txt -text
