@@ -1,0 +1,26 @@
+name: Build unsigned Windows review artifacts
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Fetch pinned third-party build inputs
+        shell: powershell
+        run: ./scripts/fetch-vendor.ps1
+      - name: Compile and package unsigned review artifact
+        shell: powershell
+        run: ./package.ps1
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: aivpn-windows-unsigned-review
+          path: |
+            build/AIVPN.exe
+            build/AIVPN.Service.exe
+            delivery/
+          retention-days: 14

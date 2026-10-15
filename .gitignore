@@ -1,0 +1,9 @@
+build/
+delivery/
+vendor/
+artifacts/
+*.pfx
+*.p12
+*.key
+*.conf
+.env*
